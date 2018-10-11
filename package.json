@@ -1,7 +1,7 @@
 {
     "name": "apache-arrow-viewer",
-    "displayName": "Arrow Inspector",
-    "description": "Apache Arrow File Inspector",
+    "displayName": "Apache Arrow Viewer",
+    "description": "Apache Arrow Viewer",
     "version": "0.1.1",
     "publisher": "cwharris",
     "repository": "https://github.com/cwharris/vscode-arrow-viewer.git",
