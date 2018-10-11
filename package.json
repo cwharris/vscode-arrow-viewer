@@ -2,7 +2,7 @@
     "name": "apache-arrow-viewer",
     "displayName": "Apache Arrow Viewer",
     "description": "Apache Arrow Viewer",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "publisher": "cwharris",
     "repository": "https://github.com/cwharris/vscode-arrow-viewer.git",
     "engines": {
