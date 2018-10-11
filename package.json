@@ -1,0 +1,57 @@
+{
+    "name": "arrow-inspector",
+    "displayName": "Arrow Inspector",
+    "description": "Apache Arrow File Inspector",
+    "version": "0.0.1",
+    "publisher": "cwharris",
+    "engines": {
+        "vscode": "^1.27.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:arrowViewer.openInViewer",
+        "onCommand:arrowViewer.openInViewerTest"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "languages": [
+            {
+                "id": "arrow",
+                "extensions": [
+                    ".arrow"
+                ]
+            }
+        ],
+        "commands": [
+            {
+                "command": "arrowViewer.openInViewer",
+                "title": "Open in Viewer"
+            },
+            {
+                "command": "arrowViewer.openInViewerTest",
+                "title": "Open in Viewer (test)"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "@types/react": "16.4.16",
+        "@types/react-dom": "16.0.9",
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^8.10.25",
+        "apache-arrow": "github:graphistry/arrow#348d735ef44f68199e7e6b66778a5bbda5f8d99c",
+        "react": "16.5.2",
+        "react-dom": "16.5.2",
+        "tslint": "^5.8.0",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.21"
+    }
+}
