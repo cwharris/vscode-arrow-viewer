@@ -55,13 +55,13 @@
     "dependencies": {
         "@types/react": "16.4.16",
         "@types/react-dom": "16.0.9",
+        "apache-arrow": "github:graphistry/arrow#348d735ef44f68199e7e6b66778a5bbda5f8d99c",
         "react": "16.5.2",
         "react-dom": "16.5.2"
     },
     "devDependencies": {
         "@types/mocha": "^2.2.42",
         "@types/node": "^8.10.25",
-        "apache-arrow": "github:graphistry/arrow#348d735ef44f68199e7e6b66778a5bbda5f8d99c",
         "tslint": "^5.8.0",
         "typescript": "^2.6.1",
         "vscode": "^1.1.21"
