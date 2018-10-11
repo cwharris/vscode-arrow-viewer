@@ -11,37 +11,46 @@ export function activate(context: vscode.ExtensionContext) {
         )
     );
 
+    let provider = new ArrowDocumentContentProvider();
+
     subscriptions.push(
-        vscode.commands.registerCommand('arrowViewer.openInViewer', openInViewer),
-        vscode.commands.registerCommand('arrowViewer.openInViewerTest', openInViewerTest),
+        vscode.commands.registerCommand('arrowViewer.openInViewerFromUri', openInViewerFromUri),
+        vscode.commands.registerCommand('arrowViewer.openInViewerFromActiveTextEditor', openInViewerFromActiveTextEditor),
         vscode.workspace.registerTextDocumentContentProvider(
             'arrowFile',
-            new ArrowDocumentContentProvider()
-        )
+            provider
+        ),
+
     );
 }
 
-function openInViewer (uri: vscode.Uri): void {
+function openInViewerFromActiveTextEditor(): void {
 
-    if (!uri) {
-        vscode.window.showInformationMessage('no file');
+    const editor = vscode.window.activeTextEditor;
+
+    if (!editor) {
+        vscode.window.showInformationMessage('Cannot preview arrow table because there is no active text editor.');
         return;
     }
 
-    let arrowFileUri = uri.with({scheme: 'arrowFile'});
+    openInViewerFromUri(editor.document.uri);
+}
+
+const filePathDilimiterRegex = new RegExp('[\\/]');
+
+function openInViewerFromUri (uri: vscode.Uri): void {
+
+    if (!uri) {
+        vscode.window.showInformationMessage('Cannot preview arrow table because there is no file uri.');
+        return;
+    }
+
+    const filename = uri.path.split(filePathDilimiterRegex).pop();
 
     vscode.commands.executeCommand(
         'vscode.previewHtml',
-        arrowFileUri,
+        uri.with({ scheme: 'arrowFile' }),
         vscode.ViewColumn.Active,
-        "3D Mesh Preview"
-    );
-
-    vscode.window.showInformationMessage(arrowFileUri.toString());
-}
-
-function openInViewerTest() {
-    openInViewer(
-        vscode.Uri.parse("/home/cwharris/src/vscode-arrow-inspector/src/test/data/cpp/file/datetime.arrow")
+        `${filename} - Arrow Viewer`
     );
 }

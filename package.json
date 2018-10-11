@@ -11,8 +11,8 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:arrowViewer.openInViewer",
-        "onCommand:arrowViewer.openInViewerTest"
+        "onCommand:arrowViewer.openInViewerFromActiveTextEditor",
+        "onCommand:arrowViewer.openInViewerFromUri"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -26,14 +26,23 @@
         ],
         "commands": [
             {
-                "command": "arrowViewer.openInViewer",
-                "title": "Open in Viewer"
+                "command": "arrowViewer.openInViewerFromActiveTextEditor",
+                "title": "Arrow: Open in Viewer"
             },
             {
-                "command": "arrowViewer.openInViewerTest",
-                "title": "Open in Viewer (test)"
+                "command": "arrowViewer.openInViewerFromUri",
+                "title": "Open in Arrow Viewer"
             }
-        ]
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "command": "arrowViewer.openInViewerFromUri",
+                    "when": "resourceExtname == .arrow",
+                    "group": "navigation"
+                }
+            ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",

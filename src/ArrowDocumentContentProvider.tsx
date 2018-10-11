@@ -1,12 +1,11 @@
 import * as vscode from 'vscode';
 import * as React from 'react';
 import * as ReactDomServer from 'react-dom/server';
-
 import { readFileSync } from 'fs';
 import { Table } from 'apache-arrow';
 
 export class ArrowDocumentContentProvider implements vscode.TextDocumentContentProvider {
-        
+
     private _onDidChange: vscode.EventEmitter<vscode.Uri>;
 
     constructor() {
@@ -26,13 +25,18 @@ export class ArrowDocumentContentProvider implements vscode.TextDocumentContentP
                             <th>{field.name}</th>
                         )}
                         </tr>
-                        {[...table].map(row =>
+                        <tr>
+                        {table.schema.fields.map(field =>
+                            <th>{`${field.type}`}</th>
+                        )}
+                        </tr>
+                    {[...table].map(row =>
                         <tr>
                         {[...row].map(cell =>
                             <td>{"" + cell}</td>
                         )}
                         </tr>
-                        )}
+                    )}
                     </table>
                 </body>
             </html>
