@@ -15,7 +15,6 @@
         "jsx": "react"
     },
     "exclude": [
-        "node_modules",
         ".vscode-test"
     ]
 }

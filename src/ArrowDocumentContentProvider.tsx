@@ -5,13 +5,6 @@ import { readFileSync } from 'fs';
 import { Table } from 'apache-arrow';
 
 export class ArrowDocumentContentProvider implements vscode.TextDocumentContentProvider {
-
-    private _onDidChange: vscode.EventEmitter<vscode.Uri>;
-
-    constructor() {
-        this._onDidChange = new vscode.EventEmitter<vscode.Uri>();
-    }
-
     provideTextDocumentContent(uri: vscode.Uri, token: vscode.CancellationToken): vscode.ProviderResult<string> {
         const arrow = readFileSync(uri.fsPath);
         const table = Table.from([arrow]);
