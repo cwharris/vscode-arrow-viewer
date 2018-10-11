@@ -4,11 +4,10 @@ import * as ReactDomServer from 'react-dom/server';
 import { readFileSync } from 'fs';
 import { Table } from 'apache-arrow';
 
-export class ArrowDocumentContentProvider implements vscode.TextDocumentContentProvider {
-    provideTextDocumentContent(uri: vscode.Uri, token: vscode.CancellationToken): vscode.ProviderResult<string> {
+export class ArrowDocumentContentProvider {
+    static provideTextDocumentContent(uri: vscode.Uri): string {
         const arrow = readFileSync(uri.fsPath);
         const table = Table.from([arrow]);
-
         return ReactDomServer.renderToStaticMarkup(
             <html>
                 <body>
